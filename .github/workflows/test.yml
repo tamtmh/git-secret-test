@@ -25,4 +25,3 @@ jobs:
         name: reveal secret
         run:
           sudo apt-get install -y git-secret
-          git secret reveal -p $(echo $GPG_PASSPHRASE | sed 's/./& /g')
