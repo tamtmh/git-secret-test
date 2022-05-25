@@ -25,7 +25,7 @@ jobs:
         name: reveal secret
         run: |
           sudo apt-get install -y git-secret
-          git secret reveal
+          git secret reveal -p ${{ secrets.GPG_PASSPHRASE }}
           ls
       -
         name: abc
