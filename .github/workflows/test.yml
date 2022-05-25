@@ -26,6 +26,7 @@ jobs:
         run: |
           sudo apt-get install -y git-secret
           git secret reveal
+          ls
       -
-        name: reveal secret
+        name: abc
         run: ls
