@@ -15,6 +15,7 @@ jobs:
         name: List keys
         run: |
           echo "${{ secrets.GPG_PRIVATE_KEY }}" > ./private_key.gpg
+          gpg --batch --yes --pinentry-mode loopback --import private_key.gpg
       -
         name: reveal secret
         run: |
