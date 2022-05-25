@@ -30,4 +30,4 @@ jobs:
           git secret --version
       -
         name: abc
-        run: ls
+        run: ls -lah
