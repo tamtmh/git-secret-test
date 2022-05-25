@@ -25,3 +25,4 @@ jobs:
         name: reveal secret
         run:
           sudo apt-get install -y git-secret
+          git secret reveal
