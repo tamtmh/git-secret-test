@@ -11,23 +11,27 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
-      -
-        name: Import GPG key
-        id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v4
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      # -
+      #   name: Import GPG key
+      #   id: import_gpg
+      #   uses: crazy-max/ghaction-import-gpg@v4
+      #   with:
+      #     gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+      #     passphrase: ${{ secrets.GPG_PASSPHRASE }}
       -
         name: List keys
-        run: gpg --version
+        run: |
+          gpg --version
+          echo ${{ secrets.GPG_PRIVATE_KEY }} > ./private_key.gpg
+          gpg --batch --yes --pinentry-mode loopback --import private_key.gpg
       -
         name: reveal secret
         run: |
           sudo apt-get install -y git-secret
+          git secret --version
           ls
           git secret reveal -p ${{ secrets.GPG_PASSPHRASE }}
-          git secret --version
+          ls
       -
         name: abc
         run: ls -lah
