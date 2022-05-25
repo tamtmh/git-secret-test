@@ -21,7 +21,6 @@ jobs:
       -
         name: List keys
         run: |
-          gpg --version
           echo ${{ secrets.GPG_PRIVATE_KEY }} > ./private_key.gpg
           gpg --batch --yes --pinentry-mode loopback --import private_key.gpg
       -
