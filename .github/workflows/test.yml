@@ -12,7 +12,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
-        name: List keys
+        name: import gpg private key
         run: |
           echo "${{ secrets.GPG_PRIVATE_KEY }}" > ./private_key.gpg
           gpg --batch --yes --pinentry-mode loopback --import private_key.gpg
@@ -21,9 +21,5 @@ jobs:
         run: |
           sudo apt install git-secret
           git secret --version
-          ls
           git secret reveal -p ${{ secrets.GPG_PASSPHRASE }}
           ls
-      -
-        name: abc
-        run: ls -lah
